@@ -5,8 +5,9 @@
     "build": "nuxt build --extends docus"
   },
   "dependencies": {
-    "docus": "latest",
+    "@nuxtjs/color-mode": "^3.5.2",
     "better-sqlite3": "^12.2.0",
+    "docus": "latest",
     "nuxt": "^4.1.2"
   }
 }
