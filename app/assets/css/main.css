@@ -1,7 +1,20 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
+:root {
+  --ui-header-height: 116px;
+}
+
 @theme {
-  --color-primary: #2ca7ff;
+  --color-primary: #2979f2;
   --color-secondary: #828486;
+}
+
+body {
+  @apply antialiased text-default dark:bg-[#1b1d29] scheme-light dark:scheme-dark;
+}
+
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #c7c7c7 #ffffff00;
 }
