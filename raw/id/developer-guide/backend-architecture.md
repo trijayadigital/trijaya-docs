@@ -1,0 +1,373 @@
+# Arsitektur Backend
+
+> Arsitektur Laravel MVC dengan integrasi frontend Vue.js
+
+Aplikasi TriPay mengikuti **arsitektur monolithic** yang dibangun di atas **framework Laravel** dengan **Vue.js** untuk interaktivitas frontend. Arsitektur ini menggabungkan pola tradisional MVC (Model-View-Controller) dengan komponen frontend modern dan service layer untuk pemisahan concern yang lebih baik.
+
+![Arsitektur Laravel](/images/laravel-architecture.png)
+
+## Gambaran Arsitektur
+
+Sistem diorganisir ke dalam lapisan-lapisan yang berbeda, masing-masing dengan tanggung jawab spesifik:
+
+1. **Browser Layer** - User interface yang diakses melalui web browser
+2. **Router Layer** - Routing dan distribusi request
+3. **View Layer** - Presentasi frontend (Blade + Vue.js)
+4. **Controller Layer** - Orkestrasi business logic
+5. **Service Layer** - Business logic kompleks dan integrasi eksternal
+6. **Model Layer** - Akses dan manipulasi data
+7. **Database Layer** - Persistensi data (MySQL)
+8. **Third-Party Services** - Integrasi API eksternal
+
+## Detail Komponen
+
+### 1. Browser
+
+Titik masuk di mana pengguna berinteraksi dengan aplikasi melalui web browser. Semua HTTP request berasal dari sini dan response di-render kembali ke pengguna.
+
+**Tanggung Jawab:**
+
+- Menampilkan user interface
+- Menangkap interaksi pengguna
+- Mengirim HTTP request ke server
+- Merender response dari server
+
+### 2. Router
+
+Sistem routing Laravel yang bertindak sebagai pengontrol lalu lintas untuk semua request yang masuk.
+
+**Dua Jenis Route:**
+
+**a. Route to Pages (Vue Router)**
+
+- Menangani navigasi frontend
+- Mengarahkan request ke layer View untuk merender halaman
+- Digunakan untuk halaman user-facing (dashboard, transaksi, pengaturan, dll.)
+- Contoh: `/dashboard`, `/transactions`, `/profile`
+
+**b. Route to Controller**
+
+- Menangani API request dan form submission
+- Mengarahkan request ke Controller untuk diproses
+- Digunakan untuk manipulasi data dan business logic
+- Contoh: `/api/transaction/create`, `/api/merchant/update`
+
+**File Konfigurasi:**
+
+- `routes/web.php` - Web routes untuk halaman
+- `routes/api.php` - API routes untuk operasi data
+
+### 3. View (Blade + Vue)
+
+Layer presentasi yang menggabungkan Laravel Blade templating dengan komponen Vue.js.
+
+**Komponen:**
+
+**a. Blade Templates**
+
+- Template engine di sisi server
+- Merender struktur HTML awal
+- Menyediakan struktur layout dan konten SEO-friendly
+- Terletak di `resources/views/`
+
+**b. Vue.js Components**
+
+- Interaktivitas di sisi client
+- Update UI dinamis tanpa reload halaman
+- Komponen frontend yang reusable
+- Terletak di `resources/js/components/`
+
+**Alur Data:**
+
+- **Send data**: Controller mengirim data ke View untuk rendering
+- **Send input from FE**: View mengirim input pengguna kembali ke Controller
+
+**Fitur Utama:**
+
+- Hot Module Replacement (HMR) untuk development
+- Arsitektur berbasis komponen
+- Reactive data binding
+- Pengalaman Single Page Application (SPA)
+
+### 4. Controller
+
+Orkestrator yang menangani HTTP request, memproses business logic, dan mengkoordinasikan antar layer yang berbeda.
+
+**Tanggung Jawab:**
+
+- Menerima dan memvalidasi request
+- Mengimplementasikan business logic
+- Berinteraksi dengan Model untuk operasi data
+- Memanggil layer Service untuk operasi kompleks
+- Mengembalikan response ke View atau API client
+
+**Jenis Controller:**
+
+**a. Web Controllers**
+
+- Menangani request rendering halaman
+- Mengembalikan view dengan data
+- Contoh: `DashboardController`, `TransactionController`
+
+**b. API Controllers**
+
+- Menangani API request
+- Mengembalikan JSON response
+- Contoh: `API\TransactionController`, `API\MerchantController`
+
+**Best Practices:**
+
+- Jaga controller tetap ringan
+- Delegasikan logic kompleks ke Service
+- Gunakan Form Request class untuk validasi
+- Ikuti prinsip single responsibility
+
+**Lokasi:** `app/Http/Controllers/`
+
+### 5. Service
+
+Layer khusus untuk business logic kompleks dan integrasi layanan eksternal.
+
+**Tanggung Jawab:**
+
+- Mengenkapsulasi business rule yang kompleks
+- Menangani integrasi API pihak ketiga
+- Menyediakan business logic yang reusable di berbagai controller
+- Mengelola komunikasi dengan layanan eksternal
+
+**Use Cases:**
+
+- Integrasi payment provider
+- Email service (Amazon SES)
+- WhatsApp notification service
+- Analytics tracking
+- Verifikasi KYC (Verihubs, Gemini)
+- File storage (Amazon S3)
+
+**Keuntungan:**
+
+- **Separation of Concerns**: Business logic terpisah dari controller
+- **Reusability**: Service dapat digunakan di berbagai controller
+- **Testability**: Lebih mudah test logic kompleks secara terpisah
+- **Maintainability**: Logic terpusat untuk update yang lebih mudah
+
+**Contoh Services:**
+
+- `PaymentProviderService` - Menangani API payment provider
+- `NotificationService` - Kirim email, SMS, WhatsApp
+- `TransactionService` - Pemrosesan transaksi kompleks
+- `WebhookService` - Menangani webhook yang masuk
+
+**Lokasi:** `app/Services/`
+
+### 6. Model
+
+Layer data yang merepresentasikan tabel database dan menangani operasi data menggunakan Eloquent ORM Laravel.
+
+**Tanggung Jawab:**
+
+- Mendefinisikan struktur tabel database
+- Mengimplementasikan relasi data
+- Menangani query dan mutasi data
+- Mendefinisikan aturan validasi data
+- Mengimplementasikan business logic terkait data
+
+**Fitur:**
+
+- **Eloquent ORM**: Object-Relational Mapping untuk operasi database
+- **Relationships**: Definisi relasi antar tabel (hasMany, belongsTo, dll.)
+- **Scopes**: Query constraint yang reusable
+- **Accessors/Mutators**: Transform data saat retrieve atau save
+- **Events**: Trigger aksi pada lifecycle event model
+
+**Model Umum:**
+
+- `User` - Akun pengguna
+- `Merchant` - Informasi merchant
+- `Transaction` - Transaksi pembayaran
+- `Channel` - Channel pembayaran
+- `Withdrawal` - Request penarikan dana
+
+**Lokasi:** `app/Models/`
+
+### 7. Database (MySQL)
+
+Layer persistensi di mana semua data aplikasi disimpan.
+
+**Struktur Database:**
+
+- Relational database management system
+- Menyimpan data user, transaksi, pengaturan, log
+- Menjamin integritas dan konsistensi data
+- Menangani concurrent access
+
+**Tabel Utama:**
+
+- `users` - Akun pengguna dan autentikasi
+- `merchants` - Profil dan konfigurasi merchant
+- `transactions` - Record transaksi pembayaran
+- `channels` - Channel pembayaran yang tersedia
+- `withdrawals` - Riwayat penarikan dana
+- `fees` - Konfigurasi biaya transaksi
+- `logs` - Log sistem dan aktivitas
+
+### 8. Third-Party Services
+
+Layanan eksternal yang terintegrasi ke dalam aplikasi untuk fungsionalitas tambahan.
+
+**Layanan Terintegrasi:**
+
+1. **Payment Providers**
+  - BCA, BNI, Neo, NOBU, Prismalink
+  - DurianPay, LinkQu, Esmartlink, PakaiLink
+  - Tujuan: Proses pembayaran dan settlement
+2. **Email Service**
+  - Amazon SES
+  - Tujuan: Pengiriman email transaksional
+3. **Storage Service**
+  - Amazon S3
+  - Tujuan: Penyimpanan file dan backup
+4. **Analytics**
+  - Google Analytics, Microsoft Clarity, PostHog
+  - Tujuan: Tracking perilaku pengguna dan analytics
+5. **KYC Services**
+  - Verihubs, Gemini
+  - Tujuan: Verifikasi identitas
+6. **Messaging**
+  - WhatsApp API
+  - Tujuan: Notifikasi customer
+7. **Automation**
+  - n8n
+  - Tujuan: Otomatisasi workflow
+8. **Reporting**
+  - Metabase
+  - Tujuan: Analytics data dan dashboard
+
+## Alur Request
+
+### Alur Request Halaman
+
+```text
+Browser → Router → View (Blade + Vue) → Browser
+```
+
+1. User mengakses URL halaman
+2. Router menerima request
+3. Router mengarahkan ke View yang sesuai
+4. Blade template render dengan komponen Vue
+5. Response dikirim kembali ke Browser
+
+### Alur Request API
+
+```text
+Browser → Router → Controller → Service/Model → Database
+                      ↓
+                   Response ← Service ← Third-party
+```
+
+1. User melakukan aksi (submit form, klik tombol)
+2. Browser mengirim API request
+3. Router mengarahkan ke Controller yang sesuai
+4. Controller memvalidasi request
+5. Controller memanggil Service (jika perlu) atau Model
+6. Service dapat memanggil Third-party services
+7. Model mengeksekusi query database
+8. Response berjalan kembali melalui Controller ke Browser
+
+### Alur Pengiriman Data
+
+```text
+View (Frontend Input) → Controller → Service → Model → Database
+                                       ↓
+                              Third-party Services
+```
+
+1. User mengisi form di View
+2. Komponen Vue mengirim data ke Controller
+3. Controller memvalidasi input
+4. Controller mendelegasikan ke Service (jika kompleks)
+5. Service/Controller menggunakan Model untuk operasi database
+6. Service dapat berinteraksi dengan Third-party services
+7. Response sukses/error dikirim kembali ke View
+
+## Design Pattern
+
+### 1. MVC Pattern (Model-View-Controller)
+
+- **Model**: Data dan business logic
+- **View**: Layer presentasi
+- **Controller**: Mengorkestrasi Model dan View
+
+### 2. Service Layer Pattern
+
+- Memisahkan business logic dari controller
+- Mempromosikan reusability dan testability kode
+
+### 3. Repository Pattern
+
+- Model bertindak sebagai repository untuk akses data
+- Abstraksi atas operasi database
+
+### 4. Dependency Injection
+
+- Service container Laravel menangani dependencies
+- Mempromosikan loose coupling dan testability
+
+## Best Practices
+
+### Panduan Controller
+
+1. Jaga controller tetap ringan dan fokus
+2. Validasi request menggunakan Form Request class
+3. Delegasikan logic kompleks ke Service
+4. Return format response yang konsisten
+5. Gunakan resource controller untuk RESTful API
+
+### Panduan Service
+
+1. Buat service untuk business logic kompleks
+2. Buat service yang reusable di berbagai controller
+3. Tangani integrasi third-party di service
+4. Tulis unit test untuk method service
+5. Gunakan dependency injection untuk service dependencies
+
+### Panduan Model
+
+1. Definisikan relasi dengan jelas
+2. Gunakan scope untuk query yang reusable
+3. Implementasikan accessor/mutator untuk transformasi data
+4. Tambahkan aturan validasi di model atau Form Request
+5. Gunakan model event untuk aksi otomatis
+
+### Panduan View
+
+1. Jaga Blade template tetap bersih dan sederhana
+2. Gunakan komponen Vue untuk elemen interaktif
+3. Pisahkan concern antara Blade dan Vue
+4. Implementasikan data binding yang tepat
+5. Optimalkan rendering komponen
+
+## Pertimbangan Keamanan
+
+1. **Input Validation**: Semua input user divalidasi di Form Request
+2. **CSRF Protection**: Token CSRF Laravel untuk form submission
+3. **SQL Injection Prevention**: Eloquent ORM mencegah SQL injection
+4. **XSS Protection**: Blade templating auto-escape output
+5. **Authentication**: Laravel Sanctum/Passport untuk API authentication
+6. **Authorization**: Policy dan Gate untuk access control
+7. **Rate Limiting**: Throttling untuk API endpoint
+8. **Secure API Keys**: Environment variable untuk data sensitif
+
+## Optimasi Performa
+
+1. **Query Optimization**: Gunakan eager loading untuk mencegah N+1 query
+2. **Caching**: Implementasi Redis/Memcached untuk data yang sering diakses
+3. **Queue Jobs**: Background processing untuk task yang memakan waktu
+4. **Database Indexing**: Index yang tepat pada kolom yang sering di-query
+5. **Asset Optimization**: Minifikasi dan bundling JS/CSS
+6. **CDN Usage**: Serve static asset via CDN
+7. **Database Connection Pooling**: Reuse koneksi database
+
+## Kesimpulan
+
+Arsitektur TriPay menggabungkan ketangguhan pola MVC Laravel dengan kapabilitas frontend Vue.js modern, menciptakan aplikasi monolithic yang maintainable dan scalable. Penambahan Service layer memberikan separation of concerns yang lebih baik, membuat codebase lebih terorganisir, testable, dan lebih mudah di-maintain seiring pertumbuhan aplikasi.

@@ -1,0 +1,3 @@
+# Best Practices
+
+This section provides development best practices and guidelines.

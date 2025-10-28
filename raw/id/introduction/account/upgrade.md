@@ -1,0 +1,59 @@
+# Upgrade Akun
+
+> Tripay menyediakan dua jenis akun: Akun Personal dan Akun Bisnis. Setiap pengguna dapat melakukan upgrade dari akun personal ke akun bisnis sesuai kebutuhan bisnis masing-masing. Proses upgrade bersifat permanen dan tidak dapat dikembalikan (downgrade) ke akun personal.
+
+Tripay menyediakan dua jenis akun: **Akun Personal** dan **Akun Bisnis**. Setiap pengguna dapat melakukan upgrade dari akun personal ke akun bisnis sesuai kebutuhan bisnis masing-masing. Proses upgrade bersifat permanen dan tidak dapat dikembalikan (downgrade) ke akun personal.
+
+## Perbedaan Akun Personal dan Akun Bisnis
+
+Perbedaan utama antara kedua jenis akun terletak pada:
+
+### Rekening Penarikan
+
+- **Akun Personal**: Hanya dapat menggunakan rekening atas nama pribadi.
+- **Akun Bisnis**: Dapat menggunakan rekening perusahaan (PT/CV) atau rekening pribadi direktur/penanggung jawab.
+
+### Masa Kliring
+
+- **Akun Personal**: Masa kliring standar H+3 (3x24 jam).
+- **Akun Bisnis**: Dapat memperoleh masa kliring H+2 (2x24 jam) dengan memenuhi syarat berikut:
+
+  - Minimum 30 transaksi sukses
+  - Total nilai transaksi minimum Rp 30.000.000
+  - Umur akun minimum 60 hari sejak transaksi pertama
+  - Berlaku untuk QRIS dan semua Virtual Account (VA), kecuali BCA yang tetap H+3
+
+## Persyaratan Dokumen
+
+### Dokumen untuk Akun Personal
+
+1. KTP
+2. Foto selfie memegang KTP
+3. Foto selfie memegang kertas putih bertuliskan "Verifikasi Akun TriPay (Nomor HP)" beserta tanda tangan
+
+### Dokumen untuk Akun Bisnis
+
+1. KTP direktur/penanggung jawab
+2. Foto selfie direktur/penanggung jawab memegang KTP
+3. Foto selfie direktur/penanggung jawab memegang kertas putih bertuliskan "Verifikasi Akun TriPay (Nomor HP)" beserta tanda tangan
+4. NPWP direktur/penanggung jawab
+5. NPWP PT/CV
+6. SIUP (Surat Izin Usaha Perdagangan) yang diterbitkan oleh Gubernur setempat
+7. Akta Pendirian PT/CV yang diterbitkan oleh KEMENKUMHAM RI
+
+## Langkah-langkah Upgrade Akun
+
+1. Login ke dashboard Tripay.
+2. Masuk ke menu **Pengaturan**.
+3. Pilih **Upgrade Akun**.
+4. Pilih jenis akun yang diinginkan (Personal atau Bisnis).
+5. Unggah semua dokumen yang diperlukan sesuai dengan jenis akun yang dipilih.
+6. Submit permintaan upgrade.
+7. Tim Tripay akan memproses verifikasi dokumen dalam waktu 1x24 jam.
+
+## Catatan Penting
+
+- Proses upgrade akun **tidak dikenakan biaya**.
+- Setelah akun berhasil di-upgrade ke akun bisnis, **tidak dapat dikembalikan** (downgrade) ke akun personal.
+- Pastikan semua dokumen yang diunggah jelas, valid, dan sesuai dengan ketentuan yang berlaku.
+- Masa kliring H+2 untuk akun bisnis akan otomatis aktif setelah memenuhi syarat yang ditentukan.

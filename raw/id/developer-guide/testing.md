@@ -1,0 +1,3 @@
+# Testing
+
+This section covers testing strategies and implementation.

@@ -1,0 +1,3 @@
+# API Endpoints
+
+This section documents all available API endpoints including request/response formats.

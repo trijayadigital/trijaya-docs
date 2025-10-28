@@ -1,0 +1,3 @@
+# Frontend Architecture
+
+This section explains the frontend architecture and structure.
