@@ -1,0 +1,1 @@
+import{_ as s,p as a,g as r,t}from"./CJj2_MDD.js";const n={};function o(c,e){return r(),a("div",null,[...e[0]||(e[0]=[t("h1",null,"Header Tabs",-1)])])}const d=Object.assign(s(n,[["render",o]]),{__name:"CustomsHeaderTabs"});export{d as default};
