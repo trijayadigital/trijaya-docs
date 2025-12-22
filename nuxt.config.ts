@@ -3,7 +3,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/content',
     '@nuxtjs/color-mode',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@barzhsieh/nuxt-content-mermaid'
   ],
   css: ['./app/assets/css/main.css'],
 
@@ -19,5 +20,8 @@ export default defineNuxtConfig({
     routeRules: {
       '/': { redirect: '/en/introduction/introduction/welcome' }
     }
-  }
+  },
+  contentMermaid: {
+    enabled: true,
+  },
 });

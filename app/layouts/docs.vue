@@ -11,7 +11,6 @@ const isDocs = computed(
 </script>
 
 <template>
-  <AppHeader />
   <UMain>
     <slot v-if="!isDocs" />
     <UContainer v-else>
