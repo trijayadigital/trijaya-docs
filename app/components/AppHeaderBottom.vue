@@ -8,7 +8,7 @@ const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 const items = computed(() => {
   const baseItems = [
     {
-      label: "Introduction",
+      label: "Umum",
       icon: "i-lucide-book-open",
       to: localePath("/introduction/introduction/welcome"),
       path: "/introduction",
@@ -36,9 +36,7 @@ const items = computed(() => {
 
 <template>
   <USeparator class="hidden lg:flex" />
-  <UContainer
-    class="hidden lg:flex items-center justify-between bg-white dark:bg-transparent h-[48px]"
-  >
+  <UContainer class="hidden lg:flex items-center justify-between bg-white dark:bg-transparent h-[48px]">
     <UNavigationMenu :items="items" variant="pill" highlight class="-mx-2.5" />
   </UContainer>
 </template>

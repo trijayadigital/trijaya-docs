@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   css: ['./app/assets/css/main.css'],
 
   i18n: {
-    defaultLocale: 'id',
+    defaultLocale: 'en',
     locales: [
       { code: 'en', name: 'English' },
       { code: 'id', name: 'Bahasa Indonesia' }
