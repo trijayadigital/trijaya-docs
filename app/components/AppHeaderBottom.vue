@@ -10,8 +10,8 @@ const items = computed(() => {
     {
       label: "Umum",
       icon: "i-lucide-book-open",
-      to: localePath("/introduction/introduction/welcome"),
-      path: "/introduction",
+      to: localePath("/guide/overview"),
+      path: "/guide",
     },
     {
       label: "Developer Guide",

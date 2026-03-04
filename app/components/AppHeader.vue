@@ -14,25 +14,20 @@ console.log("DEBUG i18n:", {
 const links = computed(() =>
   appConfig.github && appConfig.github.url
     ? [
-        {
-          icon: "i-simple-icons-github",
-          to: appConfig.github.url,
-          target: "_blank",
-          "aria-label": "GitHub",
-        },
-      ]
+      {
+        icon: "i-simple-icons-github",
+        to: appConfig.github.url,
+        target: "_blank",
+        "aria-label": "GitHub",
+      },
+    ]
     : []
 );
 </script>
 
 <template>
-  <UHeader
-    :ui="{ center: 'flex-1' }"
-    :to="localePath('/introduction/introduction/welcome')"
-    :title="appConfig.header?.title || site.name"
-    mode="slideover"
-    class="flex flex-col dark:bg-[#181a25]"
-  >
+  <UHeader :ui="{ center: 'flex-1' }" :to="localePath('/guide/overview')"
+    :title="appConfig.header?.title || site.name" mode="slideover" class="flex flex-col dark:bg-[#181a25]">
     <AppHeaderCenter />
 
     <template #title>
@@ -47,9 +42,7 @@ const links = computed(() =>
           <LanguageSelect />
 
           <template #fallback>
-            <div
-              class="h-8 w-8 animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md"
-            />
+            <div class="h-8 w-8 animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md" />
           </template>
         </ClientOnly>
 
@@ -62,9 +55,7 @@ const links = computed(() =>
         <UColorModeButton />
 
         <template #fallback>
-          <div
-            class="h-8 w-8 animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md"
-          />
+          <div class="h-8 w-8 animate-pulse bg-neutral-200 dark:bg-neutral-800 rounded-md" />
         </template>
       </ClientOnly>
 

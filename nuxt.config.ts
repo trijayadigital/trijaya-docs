@@ -1,25 +1,29 @@
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/ui',
-    '@nuxt/content',
-    '@nuxtjs/color-mode',
-    '@nuxtjs/i18n',
-    '@barzhsieh/nuxt-content-mermaid'
+    "@nuxt/ui",
+    "@nuxt/content",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/i18n",
+    "@barzhsieh/nuxt-content-mermaid",
   ],
-  css: ['./app/assets/css/main.css'],
+  css: ["./app/assets/css/main.css"],
+
+  mcp: {
+    enabled: true,
+  },
 
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: "en",
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'id', name: 'Bahasa Indonesia' }
-    ]
+      { code: "en", name: "English" },
+      { code: "id", name: "Bahasa Indonesia" },
+    ],
   },
 
   nitro: {
     routeRules: {
-      '/': { redirect: '/en/introduction/introduction/welcome' }
-    }
+      "/": { redirect: "/en/guide/overview" },
+    },
   },
   contentMermaid: {
     enabled: true,

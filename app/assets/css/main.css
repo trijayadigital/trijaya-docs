@@ -6,8 +6,25 @@
 }
 
 @theme {
-  --color-primary: #0CB4FF;
-  --color-secondary: #828486;
+  --font-sans: 'Geist', sans-serif;
+
+  --color-blue-50: oklch(96.52% 0.022 226.13);
+  --color-blue-100: oklch(93.21% 0.042 227.18);
+  --color-blue-200: oklch(86.84% 0.083 228.33);
+  --color-blue-300: oklch(81.06% 0.118 230.4);
+  --color-blue-400: oklch(75.81% 0.146 234.61);
+  --color-blue-500: oklch(71.63% 0.165 240.23);
+  --color-blue-600: oklch(60.69% 0.139 239.86);
+  --color-blue-700: oklch(49.49% 0.111 238.48);
+  --color-blue-800: oklch(37.34% 0.081 236.96);
+  --color-blue-900: oklch(24.09% 0.05 232.82);
+  --color-blue-950: oklch(19.63% 0.04 231.93);
+
+  /* Utilities Colors */
+  --color-background-page: #f8fafc;
+  --color-sidebar-foreground: #52525b;
+  --color-border: #e4e4e7;
+  --color-error: #f15b5b;
 }
 
 body {
@@ -16,5 +33,10 @@ body {
 
 .scrollbar-custom {
   scrollbar-width: thin;
-  scrollbar-color: #c7c7c7 #ffffff00;
+  scrollbar-color: #eeeeee #ffffff00;
+}
+
+.dark .scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #282a3d #ffffff00;
 }
