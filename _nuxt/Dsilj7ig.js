@@ -1,1 +1,0 @@
-import{v as c,c as n,p,g as l,r as m,G as u,F as s}from"./CJj2_MDD.js";const i={base:""},_={__name:"ProseEm",props:{class:{type:String,required:!1}},setup(e){const a=e,t=c(),o=n(()=>s({extend:s(i),...t.ui?.prose?.em||{}}));return(r,f)=>(l(),p("em",{class:u(o.value({class:a.class}))},[m(r.$slots,"default")],2))}};export{_ as default};
