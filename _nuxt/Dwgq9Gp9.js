@@ -1,0 +1,1 @@
+import{_ as s,e as a,p as r,s as n}from"./D1usHPgl.js";const t={};function o(c,e){return a(),r("div",null,[...e[0]||(e[0]=[n("h1",null,"Header Tabs",-1)])])}const d=Object.assign(s(t,[["render",o]]),{__name:"CustomsHeaderTabs"});export{d as default};

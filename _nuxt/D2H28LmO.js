@@ -1,0 +1,1 @@
+import{v as n,p as r,r as p,F as c,j as u,e as i,H as s}from"./D1usHPgl.js";const m={base:"my-1.5 ps-1.5 leading-7 [&>ul]:my-0"},_={__name:"ProseLi",props:{class:{type:null,required:!1}},setup(e){const a=e,l=n(),o=u(()=>s({extend:s(m),...l.ui?.prose?.li||{}}));return(t,d)=>(i(),r("li",{class:c(o.value({class:a.class}))},[p(t.$slots,"default")],2))}};export{_ as default};

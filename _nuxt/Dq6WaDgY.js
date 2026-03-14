@@ -1,0 +1,1 @@
+import{v as n,p as l,r as c,F as p,j as u,e as i,H as s}from"./D1usHPgl.js";const m={base:""},g={__name:"ProseStrong",props:{class:{type:null,required:!1}},setup(e){const a=e,o=n(),t=u(()=>s({extend:s(m),...o.ui?.prose?.strong||{}}));return(r,f)=>(i(),l("strong",{class:p(t.value({class:a.class}))},[c(r.$slots,"default")],2))}};export{g as default};
