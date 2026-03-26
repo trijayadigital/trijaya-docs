@@ -1,0 +1,1 @@
+import{v as t,p as c,F as l,j as n,e as p,H as e}from"./DUvIXUhl.js";const u={base:"border-t border-default my-12"},f={__name:"ProseHr",props:{class:{type:null,required:!1}},setup(s){const a=s,r=t(),o=n(()=>e({extend:e(u),...r.ui?.prose?.hr||{}}));return(m,i)=>(p(),c("hr",{class:l(o.value({class:a.class}))},null,2))}};export{f as default};
